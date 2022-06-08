@@ -1,21 +1,6 @@
 defmodule Stack.Server do
   use GenServer
-
-  def start_link(current_number) do
-    GenServer.start_link(__MODULE__, current_number, name: __MODULE__)
-  end
-
-  def push(delta) do
-    GenServer.cast __MODULE__, {:push, delta}
-  end
-
-  def pop do
-    GenServer.call __MODULE__, :pop
-  end
-
-  def set_list(new_list) do
-    GenServer.cast __MODULE__, {:set_list, new_list}
-  end
+  alias Stack.Impl
 
   def init(initial_list) do
     { :ok, initial_list }
@@ -26,12 +11,12 @@ defmodule Stack.Server do
   end
 
   def handle_call(:pop, _from, current) do
-    { head, tail } = List.pop_at(current, -1)
+    { head, tail } = Impl.pop(current)
     { :reply, head, tail }
   end
 
   def handle_cast({:push, delta}, current) do
-    { :noreply, current ++ [delta] }
+    { :noreply, Impl.push(current, delta) }
   end
 
   def format_status(_reason, [ _pdict, state ]) do
