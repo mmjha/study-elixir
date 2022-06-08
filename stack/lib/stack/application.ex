@@ -4,7 +4,8 @@ defmodule Stack.Application do
 
   def start(_type, _args) do
     children = [
-      {Stack.Server, [100, 200, 300]}
+      {Stack.Stash, [1, 2, 3]},
+      {Stack.Server, nil},
     ]
 
     opts = [stategy: :one_for_one, name: Stack.Supervisor]
