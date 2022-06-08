@@ -18,5 +18,8 @@ defmodule Stack.Server do
     { :reply, head, tail }
   end
 
+  def handle_cast({:push, delta}, current) do
+    { :noreply, current ++ [delta] }
+  end
 
 end
