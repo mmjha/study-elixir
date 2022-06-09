@@ -11,16 +11,28 @@ defmodule Stack.Server do
   end
 
   def handle_call(:pop, _from, current) do
-    { head, tail } = Impl.pop(current)
+    [ head | tail ] = Impl.pop(current)
     { :reply, head, tail }
   end
 
   def handle_cast({:push, delta}, current) do
-    { :noreply, Impl.push(current, delta) }
+    if is_integer(delta) and delta < 10 do
+      System.halt(0)
+    end
+
+    if is_integer(delta) and delta == 10 do
+      {:stop, :normal, current}
+    else
+      { :noreply, Impl.push(current, delta)}
+    end
   end
 
   def format_status(_reason, [ _pdict, state ]) do
     [data: [{'State', "My current state is '#{inspect state}', and I'm happy"}]]
+  end
+
+  def terminate(reason, state) do
+    IO.puts "Reason: #{inspect reason}; State: #{inspect state}"
   end
 
 end
