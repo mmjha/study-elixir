@@ -1,6 +1,8 @@
 defmodule Sequence2.Server do
   use GenServer
 
+  @vsn "0"
+
   def start_link(current_number) do
     GenServer.start_link(__MODULE__, current_number, name: __MODULE__)
   end
