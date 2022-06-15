@@ -8,7 +8,7 @@ defmodule Stack.Application do
       {Stack.Server, nil},
     ]
 
-    opts = [stategy: :one_for_one, name: Stack.Supervisor]
+    opts = [strategy: :one_for_one, name: Stack.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
