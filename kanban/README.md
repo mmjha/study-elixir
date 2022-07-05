@@ -1,4 +1,7 @@
 # Kanban
+clone coding  
+https://medium.com/swlh/building-a-real-time-kanban-board-with-phoenix-liveview-e9b718ac185  
+
 
 To start your Phoenix server:
 

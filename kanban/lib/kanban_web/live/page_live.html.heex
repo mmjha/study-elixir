@@ -1,0 +1,25 @@
+<h1><%= @board.title %></h1>
+  
+<div class="row">
+  
+  <%= for column <- @board.columns do %>
+  <div class="col-xs-4">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= column.title %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="column" data-column-id="{column.id}">
+        &nbsp;
+        <%= for card <- column.cards do %>
+          <div data-card-id="{card.id}" class="task alert alert-success" role="alert"><%= card.content %></div>
+          <% end %>
+          <div>
+            <button>Add card</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
