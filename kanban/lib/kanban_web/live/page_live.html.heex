@@ -15,7 +15,7 @@
           <div data-card-id="{card.id}" class="task alert alert-success" role="alert"><%= card.content %></div>
           <% end %>
           <div>
-            <button>Add card</button>
+            <button phx-click="add_card" phx-value-column="{column.id}">Add card</button>
           </div>
         </div>
       </div>
