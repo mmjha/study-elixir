@@ -21,6 +21,12 @@ defmodule KanbanWeb.Router do
     get "/boards/:id", BoardController, :show
   end
 
+  scope "/api", KabanWeb do
+    pipe_through :api
+
+    put "/cards/:id", ApiController, :update_card
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", KanbanWeb do
   #   pipe_through :api
