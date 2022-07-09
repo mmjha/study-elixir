@@ -17,4 +17,17 @@ defmodule KanbanWeb.PageLive do
     {:ok, new_board} = Kanban.Board.find(socket.assigns.board.id)
     {:noreply, assign(socket, :board, new_board)}
   end
+
+  def handle_info(%{topic: message_topic, event: "board:updated", payload: board}, socket) do
+    cond do
+      topic(board.id) == message_topic ->
+        {:noreply, assign(socket, :board, Kanban.Repo.preload(board, columns: :cards))}
+      true ->
+        {:noreply, socket}
+    end
+  end
+
+  def topic(board_id) do
+    "board:#{board_id}"
+  end
 end
