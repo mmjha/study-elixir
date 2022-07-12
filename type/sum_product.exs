@@ -1,5 +1,5 @@
 defmodule Examples do
-  defstruct first: 0, last: 9
+  defstruct first: nil, last: nil
 
   @type t(first, last) :: %Examples{first: first, last: last}
   @type t :: %Examples{first: integer, last: integer}
@@ -17,4 +17,4 @@ defmodule Test do
   end
 end
 
-IO.inspect Test.sum_product(3, %{first: 1, last: 2})
+IO.inspect Test.sum_product(3, %{first: nil, last: 2})
